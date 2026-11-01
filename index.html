@@ -344,7 +344,7 @@ function plural(n, one, few, many) {
 const shoes = n => `${n} ${plural(n, 'podkowa', 'podkowy', 'podków')}`;
 function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 const credit = key => { const c = (window.CREDITS || {})[key]; return c ? `Fot. ${esc(c.a)}${c.l ? ', ' + esc(c.l) : ''}, Wikimedia Commons` : ''; };
-const imgSrc = key => (window.CREDITS && window.CREDITS[key]) ? window.CREDITS[key].f : `img/${key}.jpg`;
+const imgSrc = key => (window.CREDITS && window.CREDITS[key]) ? window.CREDITS[key].f : `${key}.jpg`;
 
 function load() {
   const base = { shoes: 0, earned: 0, unlocked: [], best: {}, seen: {} };

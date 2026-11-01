@@ -2,7 +2,7 @@
 
 Quiz o koniach w przeglądarce na telefon. Ma trzy poziomy trudności: Źrebak, Galop i Grand Prix. Za każdą dobrą odpowiedź gracz dostaje podkowy, a w Stajni wymienia je na karty ras z ciekawostkami.
 
-Gra nie potrzebuje instalacji ani serwera. Składa się z pliku `index.html`, pliku `credits.js` (autorzy zdjęć) i folderu `img` ze zdjęciami.
+Gra nie potrzebuje instalacji ani serwera. Składa się z pliku `index.html`, pliku `credits.js` (autorzy zdjęć) i zdjęć `.jpg`, które leżą w tym samym, głównym folderze.
 
 Postęp (podkowy, rozetki, odkryte konie) zapisuje się w przeglądarce na danym telefonie.
 
@@ -10,7 +10,7 @@ Postęp (podkowy, rozetki, odkryte konie) zapisuje się w przeglądarce na danym
 
 1. Zaloguj się na https://github.com i kliknij **New repository**.
 2. Nazwij repozytorium, na przykład `zlota-podkowa`, ustaw je jako **Public** i kliknij **Create repository**.
-3. Na stronie repozytorium kliknij **uploading an existing file**. Przeciągnij całą zawartość folderu `github-pages`: pliki `index.html`, `credits.js`, `README.md` oraz folder `img` (razem ze zdjęciami). Kliknij **Commit changes**.
+3. Na stronie repozytorium kliknij **uploading an existing file**. Przeciągnij całą zawartość folderu `github-pages`: pliki `index.html`, `credits.js`, `README.md` oraz wszystkie zdjęcia `.jpg`. Wszystko trafia do głównego folderu repozytorium, bez podfolderów. Kliknij **Commit changes**.
 4. Przejdź do **Settings → Pages**. W sekcji **Build and deployment** wybierz **Source: Deploy from a branch** oraz **Branch: `main`** i folder **`/ (root)`**, a następnie kliknij **Save**.
 5. Po 1–2 minutach gra będzie dostępna pod adresem:
    `https://<twoja-nazwa-użytkownika>.github.io/zlota-podkowa/`
