@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#EBEFE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1A14" media="(prefers-color-scheme: dark)">
+<meta name="description" content="Quiz o koniach na telefon: trzy poziomy, zdjęcia ras i maści, podkowy za dobre odpowiedzi i stajnia z kartami ras.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Złota Podkowa">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23C9902A' d='M4.2 2.5h4.1c-1.2 2.3-1.8 4.6-1.8 7.2 0 3.9 2.4 6.6 5.5 6.6s5.5-2.7 5.5-6.6c0-2.6-.6-4.9-1.8-7.2h4.1c1 2.2 1.7 4.6 1.7 7.4 0 6.3-4.1 11.6-9.5 11.6S2.5 16.2 2.5 9.9c0-2.8.7-5.2 1.7-7.4z'/></svg>">
+<style>
+/* To samo, co skeleton claude.ai dodaje przy publikacji */
+html{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<title>Złota Podkowa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+/* Layout: one narrow column like a show-ring programme; the round is a 10-fence parkour, the reward a brass horseshoe */
+:root {
+  --bg: #EBEFE4; --surface: #FFFFFF; --surface-2: #DFE6D5; --ink: #142A1F; --muted: #55685B; --line: #C6D1BB;
+  --green: #1E5A3C; --green-ink: #F2F6EE; --gold: #A8720F; --gold-hi: #E2AE45; --gold-soft: #F6E7C4;
+  --blue: #2846A6; --ok: #1E8448; --ok-soft: #DCF0E2; --bad: #BF3328; --bad-soft: #F8DEDA;
+  --shadow: 0 1px 2px rgb(20 42 31 / .08), 0 6px 18px rgb(20 42 31 / .08);
+  --display: "Zilla Slab", "Rockwell", "Roboto Slab", Georgia, serif;
+  --body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1A14; --surface: #15281F; --surface-2: #1C3428; --ink: #E6EEE0; --muted: #9CB0A1; --line: #2A4536;
+  --green: #2F7D53; --green-ink: #F2F6EE; --gold: #E2A83A; --gold-hi: #F4C866; --gold-soft: #3A2F16;
+  --blue: #8CA2F2; --ok: #4CC07D; --ok-soft: #173B27; --bad: #F06D5F; --bad-soft: #43201C;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 22px rgb(0 0 0 / .3); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0D1A14; --surface: #15281F; --surface-2: #1C3428; --ink: #E6EEE0; --muted: #9CB0A1; --line: #2A4536;
+  --green: #2F7D53; --green-ink: #F2F6EE; --gold: #E2A83A; --gold-hi: #F4C866; --gold-soft: #3A2F16;
+  --blue: #8CA2F2; --ok: #4CC07D; --ok-soft: #173B27; --bad: #F06D5F; --bad-soft: #43201C;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 22px rgb(0 0 0 / .3); color-scheme: dark }
+
+html, body { min-height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body); -webkit-tap-highlight-color: transparent; }
+.app { max-width: 520px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 12px 40px; display: grid; gap: 16px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.15; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--gold-hi); outline-offset: 2px; }
+a { color: inherit; }
+.eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+
+/* horseshoe counter */
+.shoe { width: 1.25em; height: 1.25em; color: var(--gold); flex: none; }
+.purse { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 10px; border-radius: 999px; background: var(--gold-soft); color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); }
+.purse.bump { animation: bump .5s ease; }
+@keyframes bump { 40% { transform: scale(1.18); } }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 700; font-size: 22px; }
+.brand .shoe { width: 28px; height: 28px; }
+.iconbtn { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 8px 12px; font-weight: 700; }
+
+/* home */
+.hero { position: relative; border-radius: 20px; overflow: hidden; background: var(--green); color: var(--green-ink); min-height: 200px; display: grid; align-content: end; box-shadow: var(--shadow); }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(10 30 20 / 0) 25%, rgb(10 30 20 / .85)); }
+.hero-body { position: relative; z-index: 1; padding: 18px; display: grid; gap: 6px; }
+.hero h1 { font-size: 34px; }
+.hero p { margin: 0; max-width: 34ch; opacity: .92; }
+.hero .credit { font-size: 10px; opacity: .7; }
+
+.rank { background: var(--surface); border-radius: 16px; padding: 14px 16px; display: grid; gap: 8px; box-shadow: var(--shadow); }
+.rank-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.rank-name { font-family: var(--display); font-weight: 700; font-size: 20px; }
+.bar { height: 10px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); border-radius: inherit; transition: width .6s ease; }
+
+.levels { display: grid; gap: 12px; }
+.level { text-align: left; border: 0; border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); padding: 16px; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; position: relative; overflow: hidden; }
+.level::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--lvl); }
+.level h2 { font-size: 24px; }
+.level .desc { grid-column: 1; margin: 0; color: var(--muted); font-size: 14px; }
+.level .pay { grid-column: 1; display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
+.level .ros { grid-column: 2; grid-row: 1 / span 3; width: 56px; height: 72px; display: grid; place-items: center; }
+.level .ros .none { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.2; }
+.level:active { transform: scale(.985); }
+
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tile { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 14px; text-align: left; display: grid; gap: 2px; }
+.tile strong { font-family: var(--display); font-size: 19px; }
+.tile span { font-size: 13px; color: var(--muted); }
+
+/* parkour progress */
+.parkour { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; align-items: end; }
+.fence { height: 26px; display: grid; align-items: end; justify-items: center; position: relative; }
+.fence::before, .fence::after { content: ""; position: absolute; bottom: 0; width: 3px; height: 26px; background: var(--muted); border-radius: 2px; opacity: .55; }
+.fence::before { left: 2px; } .fence::after { right: 2px; }
+.pole { width: 100%; height: 6px; border-radius: 3px; margin-bottom: 14px; background: repeating-linear-gradient(90deg, var(--line) 0 6px, var(--surface) 6px 12px); transition: transform .4s ease, background .3s; }
+.fence.now .pole { background: repeating-linear-gradient(90deg, var(--gold) 0 6px, var(--gold-hi) 6px 12px); }
+.fence.clean .pole { background: repeating-linear-gradient(90deg, var(--ok) 0 6px, var(--surface) 6px 12px); }
+.fence.down .pole { background: repeating-linear-gradient(90deg, var(--bad) 0 6px, var(--surface) 6px 12px); transform: translateY(13px) rotate(14deg); }
+
+/* question */
+.qcard { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow); padding: 16px; display: grid; gap: 14px; }
+.qcard h2 { font-size: 22px; }
+figure { margin: 0; display: grid; gap: 4px; }
+figure img { width: 100%; max-height: 46vh; object-fit: contain; background: var(--surface-2); border-radius: 14px; display: block; }
+figcaption { font-size: 11px; color: var(--muted); }
+.answers { display: grid; gap: 10px; }
+.answer { border: 2px solid var(--line); background: var(--surface); border-radius: 14px; padding: 14px 16px; text-align: left; font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 12px; min-height: 56px; transition: border-color .2s, background .2s, opacity .2s; }
+.answer .key { flex: none; width: 28px; height: 28px; border-radius: 8px; background: var(--surface-2); display: grid; place-items: center; font-size: 14px; color: var(--muted); }
+.answer:hover:not(:disabled) { border-color: var(--gold); }
+.answer:disabled { cursor: default; }
+.answer.right { border-color: var(--ok); background: var(--ok-soft); }
+.answer.right .key { background: var(--ok); color: #fff; }
+.answer.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.answer.wrong .key { background: var(--bad); color: #fff; }
+.answer.gone { opacity: .25; }
+.tools { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.joker { border: 1px dashed var(--gold); background: transparent; border-radius: 12px; padding: 8px 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+.joker:disabled { opacity: .4; cursor: default; }
+.streak { font-size: 13px; font-weight: 700; color: var(--muted); }
+
+.feedback { border-radius: 16px; padding: 14px 16px; display: grid; gap: 8px; animation: rise .35s ease; }
+.feedback.ok { background: var(--ok-soft); }
+.feedback.no { background: var(--bad-soft); }
+.feedback h3 { font-size: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.feedback p { margin: 0; }
+.gain { display: inline-flex; align-items: center; gap: 4px; font-family: var(--body); font-size: 15px; font-weight: 800; color: var(--gold); }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+.primary { border: 0; border-radius: 14px; padding: 15px 18px; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: 17px; width: 100%; }
+.secondary { border: 2px solid var(--line); border-radius: 14px; padding: 13px 18px; background: var(--surface); font-weight: 800; font-size: 16px; width: 100%; }
+
+/* result */
+.result { background: var(--surface); border-radius: 20px; box-shadow: var(--shadow); padding: 22px 18px; display: grid; gap: 14px; justify-items: center; text-align: center; }
+.result h1 { font-size: 30px; }
+.result .big-ros { width: 120px; height: 156px; animation: swing 1.2s ease; transform-origin: 50% 0; }
+@keyframes swing { 0% { transform: rotate(-12deg) scale(.6); opacity: 0; } 50% { transform: rotate(6deg) scale(1.05); opacity: 1; } 100% { transform: none; } }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+.stat { background: var(--surface-2); border-radius: 12px; padding: 10px 6px; display: grid; gap: 2px; }
+.stat b { font-family: var(--display); font-size: 24px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--muted); }
+.btnrow { display: grid; gap: 10px; width: 100%; }
+
+/* stable */
+.stable-head { display: grid; gap: 4px; }
+.stable-head h1 { font-size: 30px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.card { border: 0; padding: 0; background: var(--surface); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); text-align: left; display: grid; }
+.card .ph { aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; background: var(--surface-2); }
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card.locked img { filter: grayscale(1) brightness(.35) blur(3px); transform: scale(1.1); }
+.card .cap { padding: 10px 12px 12px; display: grid; gap: 2px; }
+.card .cap strong { font-family: var(--display); font-size: 17px; line-height: 1.2; }
+.card .cap span { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+
+.sheet-wrap { position: fixed; inset: 0; z-index: 20; background: rgb(5 15 10 / .55); display: grid; align-items: end; justify-items: center; animation: fade .2s ease; }
+@keyframes fade { from { opacity: 0; } }
+.sheet { width: 100%; max-width: 520px; max-height: 92vh; overflow: auto; background: var(--surface); border-radius: 22px 22px 0 0; padding: 18px max(18px, env(safe-area-inset-right, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px)); display: grid; gap: 12px; animation: up .3s ease; }
+@keyframes up { from { transform: translateY(40px); opacity: .5; } }
+.sheet img { width: 100%; border-radius: 14px; max-height: 40vh; object-fit: cover; }
+.sheet h2 { font-size: 26px; }
+.sheet ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+.credits { display: grid; gap: 10px; }
+.credits li { font-size: 13px; color: var(--muted); }
+.credits ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+.toast { position: fixed; left: 50%; top: calc(14px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 30; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-weight: 800; display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow); animation: drop .3s ease; white-space: nowrap; }
+@keyframes drop { from { transform: translate(-50%, -20px); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="shoe" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M4.2 2.5h4.1c-1.2 2.3-1.8 4.6-1.8 7.2 0 3.9 2.4 6.6 5.5 6.6s5.5-2.7 5.5-6.6c0-2.6-.6-4.9-1.8-7.2h4.1c1 2.2 1.7 4.6 1.7 7.4 0 6.3-4.1 11.6-9.5 11.6S2.5 16.2 2.5 9.9c0-2.8.7-5.2 1.7-7.4z"/>
+    <g fill="var(--surface)"><circle cx="4.6" cy="7.6" r=".8"/><circle cx="4.5" cy="11.6" r=".8"/><circle cx="6" cy="15.4" r=".8"/><circle cx="19.4" cy="7.6" r=".8"/><circle cx="19.5" cy="11.6" r=".8"/><circle cx="18" cy="15.4" r=".8"/></g>
+  </symbol>
+</svg>
+
+<div class="app" id="app"></div>
+
+<script src="credits.js"></script>
+<script>
+const SHOE = '<svg class="shoe" aria-hidden="true"><use href="#shoe"/></svg>';
+const SAVE_KEY = 'zlotaPodkowa.v1';
+
+const LEVELS = {
+  latwy:  { name: 'Źrebak',     desc: 'Rozgrzewka na padoku: podstawy, rasy i maści.', pay: 1, color: '#3E9C64' },
+  sredni: { name: 'Galop',      desc: 'Chody, dyscypliny, polskie stadniny i trudniejsze maści.', pay: 2, color: '#C9902A' },
+  trudny: { name: 'Grand Prix', desc: 'Dla prawdziwych znawców: anatomia, hodowla, rzadkie rasy.', pay: 3, color: '#2846A6' },
+};
+
+const RANKS = [
+  [0, 'Stajenna'], [25, 'Młoda amazonka'], [70, 'Jeźdźczyni'], [140, 'Zawodniczka'],
+  [240, 'Trenerka'], [380, 'Mistrzyni Grand Prix'], [560, 'Legenda stajni'],
+];
+
+// [level, image key or null, question, [correct, ...wrong], fact]
+const QUESTIONS = [
+  ['latwy', null, 'Jak nazywa się koń do około roku życia?', ['Źrebię', 'Kucyk', 'Wałach', 'Roczniak'], 'Źrebię ssie mleko klaczy przez kilka miesięcy. Po odsadzeniu, w kolejnym roku, mówi się o nim „roczniak”.'],
+  ['latwy', null, 'Jak nazywa się wykastrowany samiec konia?', ['Wałach', 'Ogier', 'Klacz', 'Kuc'], 'Wałachy są zwykle spokojniejsze od ogierów, dlatego często chodzą pod szkółką.'],
+  ['latwy', null, 'Który chód konia jest najwolniejszy?', ['Stęp', 'Kłus', 'Galop', 'Cwał'], 'Stęp jest czterotaktowy: koń stawia każdą nogę osobno.'],
+  ['latwy', 'arab', 'Jaka to rasa?', ['Koń arabski', 'Fryz', 'Haflinger', 'Shire'], 'Arab ma wklęsły, „szczupaczy” profil głowy i wysoko noszony ogon.'],
+  ['latwy', 'szetland', 'Jaka to rasa?', ['Kuc szetlandzki', 'Koń fiordzki', 'Falabella', 'Hucuł'], 'Szetlandy pochodzą z wysp na północ od Szkocji. Mają do ok. 107 cm w kłębie.'],
+  ['latwy', 'fryz', 'Jaka to rasa?', ['Fryz', 'Koń arabski', 'Konik polski', 'Appaloosa'], 'Fryzy pochodzą z holenderskiej Fryzji i niemal zawsze są kare.'],
+  ['latwy', 'haflinger', 'Jaka to rasa? (to klacz ze źrebięciem)', ['Haflinger', 'Shire', 'Kuc szetlandzki', 'Mustang'], 'Każdy haflinger jest kasztanowaty z jasną grzywą. Wszystkie wywodzą się od ogiera Folie urodzonego w 1874 r.'],
+  ['latwy', 'kara', 'Jaka to maść?', ['Kara', 'Gniada', 'Siwa', 'Kasztanowata'], 'Koń kary ma czarną sierść, grzywę i ogon. Białe odmiany na nogach, jak tutaj, mogą się zdarzać.'],
+  ['latwy', 'siwa', 'Jaka to maść?', ['Siwa', 'Kara', 'Srokata', 'Izabelowata'], 'Siwe konie rodzą się ciemne i siwieją z wiekiem. Ten ma jeszcze ciemne „jabłka” i nogi.'],
+  ['latwy', 'srokata', 'Jaka to maść?', ['Srokata', 'Tarantowata', 'Siwa', 'Dereszowata'], 'Srokata maść to duże białe i kolorowe łaty. Tarantowata to drobne cętki.'],
+  ['latwy', 'podkowa', 'Kto przybija koniom podkowy?', ['Kowal', 'Weterynarz', 'Siodlarz', 'Stajenny'], 'Kowal dopasowuje podkowę do kopyta. Gwoździe wbija w ścianę kopyta, która nie czuje bólu, podobnie jak nasze paznokcie.'],
+  ['latwy', null, 'Czym czyści się kopyta?', ['Kopystką', 'Zgrzebłem', 'Szczotką miękką', 'Grzebieniem'], 'Kopyto czyści się od piętki w stronę przodu, uważając na strzałkę.'],
+  ['latwy', 'kantar', 'Co ten koń ma założone na głowę?', ['Kantar', 'Ogłowie', 'Wędzidło', 'Czaprak'], 'Kantar służy do prowadzenia i wiązania konia. Do jazdy zakłada się ogłowie z wędzidłem.'],
+  ['latwy', null, 'Co kładzie się na grzbiet konia pod siodło?', ['Czaprak', 'Popręg', 'Kantar', 'Wodze'], 'Czaprak chroni grzbiet konia i zbiera pot.'],
+  ['latwy', null, 'Po której stronie konia zwykle się wsiada?', ['Po lewej', 'Po prawej', 'Od tyłu', 'To bez znaczenia'], 'Zwyczaj pochodzi z czasów, gdy jeźdźcy nosili szablę po lewej stronie.'],
+  ['latwy', null, 'Jak nazywa się pomieszczenie na siodła i ogłowia?', ['Siodlarnia', 'Paśnik', 'Ujeżdżalnia', 'Padok'], 'W siodlarni sprzęt ma swoje stałe miejsce, często podpisane imieniem konia.'],
+  ['latwy', null, 'Jak nazywa się ogrodzony wybieg, na którym konie spędzają czas na dworze?', ['Padok', 'Boks', 'Siodlarnia', 'Parkur'], 'Ruch na padoku jest koniom bardzo potrzebny. To zwierzęta stadne, które w naturze chodzą wiele godzin dziennie.'],
+  ['latwy', 'skoki', 'Jaka to dyscyplina?', ['Skoki przez przeszkody', 'Ujeżdżenie', 'Woltyżerka', 'Reining'], 'W skokach liczą się czyste przejazdy: każda zrzutka to 4 punkty karne.'],
+  ['latwy', 'ujezdzenie', 'Jaka to dyscyplina?', ['Ujeżdżenie', 'Skoki przez przeszkody', 'Polo', 'Wyścigi'], 'Ujeżdżenie nazywa się czasem „baletem na koniu”. Jeździec wykonuje program na czworoboku.'],
+  ['latwy', 'polo', 'Jaka to dyscyplina?', ['Polo', 'Rodeo', 'Woltyżerka', 'Powożenie'], 'W polo grają dwie czteroosobowe drużyny, a każdy zawodnik zmienia konie w trakcie meczu.'],
+  ['latwy', 'falabella', 'Ta rasa z Argentyny jest jedną z najmniejszych na świecie. Jak się nazywa?', ['Falabella', 'Kuc szetlandzki', 'Hucuł', 'Kuc walijski'], 'Falabella ma ok. 70–85 cm, ale proporcje dużego konia, dlatego nazywa się ją koniem miniaturowym.'],
+  ['latwy', null, 'Czy koń potrafi drzemać na stojąco?', ['Tak', 'Nie'], 'Specjalny „aparat ustalający” w nogach blokuje stawy, więc koń nie upada. Do głębokiego snu musi się jednak położyć.'],
+  ['latwy', null, 'Jak nazywa się głos, którym koń głośno woła inne konie?', ['Rżenie', 'Parskanie', 'Beczenie', 'Chrapanie'], 'Parskanie to z kolei głośne wydmuchnięcie powietrza nosem, często znak, że koń się rozluźnił.'],
+  ['latwy', null, 'Którym chodem koń porusza się najszybciej?', ['Galopem', 'Kłusem', 'Stępem', 'Wszystkimi tak samo'], 'Bardzo szybki, wyciągnięty galop nazywa się cwałem.'],
+  ['latwy', null, 'Co jest podstawą diety konia?', ['Siano i trawa', 'Marchewki', 'Owies bez dodatków', 'Jabłka'], 'Koń powinien jeść małe porcje paszy objętościowej prawie przez cały dzień. Marchewki i jabłka to tylko przysmaki.'],
+  ['latwy', 'palomino', 'Jaka to maść?', ['Izabelowata', 'Kara', 'Gniada', 'Siwa'], 'Maść izabelowata (palomino) to złota sierść i jasna grzywa. Tu widać klacz ze źrebięciem.'],
+
+  ['sredni', null, 'Ile taktów ma kłus?', ['2', '3', '4', '1'], 'W kłusie koń stawia jednocześnie przekątne pary nóg, np. lewą przednią i prawą tylną.'],
+  ['sredni', null, 'Ile taktów ma galop?', ['3', '2', '4', '5'], 'Po trzech uderzeniach kopyt jest faza zawieszenia, gdy żadna noga nie dotyka ziemi.'],
+  ['sredni', null, 'Gdzie mierzy się wysokość konia?', ['W kłębie', 'Na czubku głowy', 'Na zadzie', 'W połowie grzbietu'], 'Kłąb to najwyższy punkt łopatek, u podstawy szyi. Głowa ciągle zmienia wysokość, więc się nie nadaje.'],
+  ['sredni', 'fiord', 'Jaka to rasa?', ['Koń fiordzki', 'Haflinger', 'Konik polski', 'Kuc walijski'], 'Fiordom strzyże się grzywę na sztorc, żeby było widać ciemny pasek w środku jasnej grzywy.'],
+  ['sredni', 'hucul', 'Jaka to rasa?', ['Hucuł', 'Haflinger', 'Fryz', 'Achał-tekiński'], 'Hucuły to karpackie koniki górskie. W Polsce słynie z nich stadnina w Gładyszowie.'],
+  ['sredni', 'konik', 'Jaka to rasa?', ['Konik polski', 'Koń Przewalskiego', 'Hucuł', 'Mustang'], 'Konik polski ma maść myszatą z ciemną pręgą na grzbiecie. Hoduje się go m.in. w Popielnie na Mazurach.'],
+  ['sredni', 'appaloosa', 'Jaka to rasa?', ['Appaloosa', 'Koń arabski', 'Fryz', 'Clydesdale'], 'Nazwa pochodzi od rzeki Palouse w USA. Appaloosy hodowali Indianie Nez Perce.'],
+  ['sredni', 'achaltekin', 'Ta rasa słynie z metalicznego połysku sierści. Jak się nazywa?', ['Achał-tekiński', 'Koń arabski', 'Haflinger', 'Andaluz'], 'Koń achał-tekiński jest symbolem Turkmenistanu i znajduje się w jego godle.'],
+  ['sredni', 'clydesdale', 'Jaka to rasa?', ['Clydesdale', 'Fryz', 'Koń śląski', 'Kuc szetlandzki'], 'Clydesdale pochodzi ze Szkocji. Rozpoznasz go po białych odmianach i obfitych szczotkach na nogach.'],
+  ['sredni', 'islandzki', 'Ten koń idzie specjalnym chodem swojej rasy. Jaka to rasa?', ['Koń islandzki', 'Fryz', 'Mustang', 'Lipicaner'], 'Koń islandzki ma pięć chodów, w tym tölt. Koń, który wyjedzie z Islandii, nie może już tam wrócić.'],
+  ['sredni', 'gniada', 'Jaka to maść?', ['Gniada', 'Kasztanowata', 'Kara', 'Bułana'], 'Gniady koń ma brązową sierść oraz czarną grzywę, ogon i dolne części nóg.'],
+  ['sredni', 'kasztan', 'Jaka to maść?', ['Kasztanowata', 'Gniada', 'Izabelowata', 'Bułana'], 'U konia kasztanowatego grzywa i ogon są w kolorze sierści albo jaśniejsze, ale nigdy czarne.'],
+  ['sredni', 'bulana', 'Jaka to maść?', ['Bułana', 'Izabelowata', 'Kasztanowata', 'Siwa'], 'Bułana to gniada rozjaśniona genem kremowym: sierść jasnożółta, a grzywa, ogon i nogi czarne.'],
+  ['sredni', 'knabstrup', 'Jak po polsku nazywa się ta cętkowana maść?', ['Tarantowata', 'Srokata', 'Dereszowata', 'Jabłkowita'], 'Ten koń to knabstrup, duńska rasa słynąca z lamparcich cętek. Siwa jabłkowita to coś innego: ciemniejsze kółka na siwej sierści.'],
+  ['sredni', 'woltyzerka', 'Jaka to dyscyplina?', ['Woltyżerka', 'Ujeżdżenie', 'Rodeo', 'Reining'], 'W woltyżerce zawodnicy wykonują ćwiczenia gimnastyczne na koniu galopującym na lonży.'],
+  ['sredni', 'reining', 'Jak nazywa się ta westernowa dyscyplina z długimi poślizgami?', ['Reining', 'Ujeżdżenie', 'WKKW', 'Rajdy długodystansowe'], 'Poślizg na zadzie to „sliding stop”. Konie reiningowe noszą specjalne podkowy ułatwiające ślizg.'],
+  ['sredni', 'zaprzegi', 'Jaka to dyscyplina?', ['Powożenie', 'Wyścigi kłusaków', 'Polo', 'Rajdy długodystansowe'], 'Powożenie składa się z trzech prób: ujeżdżenia, maratonu i zręczności.'],
+  ['sredni', 'wkkw', 'Ten skok przez rów to część której dyscypliny?', ['WKKW', 'Ujeżdżenie', 'Woltyżerka', 'Powożenie'], 'Przeszkody terenowe skacze się w próbie crossu. Na zdjęciu słynne zawody w Badminton.'],
+  ['sredni', null, 'Co oznacza skrót WKKW?', ['Wszechstronny Konkurs Konia Wierzchowego', 'Wielki Konkurs Koni Wyścigowych', 'Wojskowy Klub Kawalerii Wierzchowej', 'Wszechstronne Kryterium Koni Wszystkich'], 'Po angielsku to „eventing”. Składa się z ujeżdżenia, crossu i skoków.'],
+  ['sredni', null, 'Ile punktów karnych dostaje się w skokach za zrzutkę?', ['4', '1', '2', '8'], 'Pierwsza odmowa też kosztuje 4 punkty, a druga oznacza eliminację.'],
+  ['sredni', null, 'Jak długo trwa mniej więcej ciąża klaczy?', ['Około 11 miesięcy', 'Około 6 miesięcy', 'Około 9 miesięcy', 'Około 15 miesięcy'], 'Średnio ok. 340 dni. Źrebię zwykle staje na nogi już w pierwszej godzinie życia.'],
+  ['sredni', null, 'Jak nazywa się metalowa część ogłowia, którą koń ma w pysku?', ['Wędzidło', 'Popręg', 'Strzemię', 'Nachrapnik'], 'Wędzidło leży na bezzębnej części szczęki, między siekaczami a zębami trzonowymi.'],
+  ['sredni', null, 'Która stadnina słynie z koni arabskich i aukcji Pride of Poland?', ['Janów Podlaski', 'Gładyszów', 'Popielno', 'Sieraków'], 'Stadnina w Janowie Podlaskim działa od 1817 roku.'],
+  ['sredni', null, 'Z którego kraju pochodzi koń fryzyjski?', ['Z Holandii', 'Z Niemiec', 'Z Danii', 'Z Irlandii'], 'Fryzja to prowincja na północy Holandii.'],
+  ['sredni', null, 'Czy koń może zwymiotować?', ['Nie', 'Tak'], 'Bardzo mocny mięsień przy wejściu do żołądka nie pozwala na wymioty. Dlatego kolka bywa u koni tak groźna.'],
+  ['sredni', null, 'Czym oddycha koń?', ['Tylko nosem', 'Nosem i pyskiem', 'Głównie pyskiem', 'Pyskiem podczas galopu'], 'Konie oddychają wyłącznie przez nozdrza. W galopie ich oddech zgrywa się z rytmem kroków.'],
+  ['sredni', 'mustang', 'Ten koń pochodzi od zdziczałych koni sprowadzonych do Ameryki przez Hiszpanów. Jak się nazywa?', ['Mustang', 'Fryz', 'Haflinger', 'Koń fiordzki'], 'Dzikie mustangi w USA są chronione prawem od 1971 r.'],
+  ['sredni', 'perszeron', 'Jaka to rasa? (koń zimnokrwisty z Francji)', ['Perszeron', 'Shire', 'Clydesdale', 'Lipicaner'], 'Nazwa pochodzi od regionu Perche we Francji. Perszerony są zwykle siwe lub kare.'],
+  ['sredni', 'tinker', 'Jaka to rasa?', ['Tinker (Gypsy Cob)', 'Clydesdale', 'Fryz', 'Shire'], 'Tinkery hodowali Romowie z Wysp Brytyjskich jako silne konie do ciągnięcia wozów.'],
+  ['sredni', 'welsh', 'Jaka to rasa?', ['Kuc walijski', 'Kuc szetlandzki', 'Haflinger', 'Koń fiordzki'], 'Kuce walijskie dzieli się na sekcje A, B, C i D. Na zdjęciu jest welsh sekcji B.'],
+  ['sredni', 'lipicaner', 'Ta rasa występuje w Hiszpańskiej Szkole Jazdy w Wiedniu. Jak się nazywa?', ['Lipicaner', 'Koń arabski', 'Perszeron', 'Hucuł'], 'Lipicanery rodzą się ciemne i siwieją z wiekiem. Nazwa pochodzi od stadniny w Lipicy w Słowenii.'],
+  ['sredni', null, 'Jaki jest najwyższy poziom konkursów w ujeżdżeniu?', ['Grand Prix', 'St. Georges', 'Intermediate I', 'Klasa L'], 'Na Igrzyskach Olimpijskich jeździ się Grand Prix, Grand Prix Special i Grand Prix Freestyle (kür).'],
+
+  ['trudny', 'kopyto', 'Co wskazuje numer 1 na zdjęciu?', ['Koronkę', 'Piętkę', 'Ścianę kopyta', 'Ostrogę'], 'Z koronki rośnie ściana kopyta: ok. 1 cm na miesiąc, więc cała odrasta w mniej niż rok.'],
+  ['trudny', 'strzalka', 'Jak nazywa się część kopyta zaznaczona żółtym V?', ['Strzałka', 'Podeszwa', 'Biała linia', 'Piętka'], 'Strzałka amortyzuje wstrząsy i przy każdym kroku pomaga pompować krew w nodze.'],
+  ['trudny', 'przewalski', 'Jaka to rasa?', ['Koń Przewalskiego', 'Konik polski', 'Koń fiordzki', 'Mustang'], 'Koń Przewalskiego ma 66 chromosomów, a koń domowy 64. W XX w. przetrwał tylko w zoo i wrócił do Mongolii.'],
+  ['trudny', null, 'Ile chromosomów ma koń domowy?', ['64', '46', '66', '78'], 'Koń Przewalskiego ma 66, a osioł 62. Dlatego muły są zwykle bezpłodne.'],
+  ['trudny', 'marwari', 'Rasę z Indii poznasz po uszach zakręconych do środka. Jak się nazywa?', ['Marwari', 'Achał-tekiński', 'Koń arabski', 'Lipicaner'], 'Czubki uszu marwari mogą się stykać nad głową. Były to konie wojenne Radżputów.'],
+  ['trudny', 'andaluz', 'Jaka to rasa?', ['Andaluz (PRE)', 'Fryz', 'Kladrubski', 'Perszeron'], 'Oficjalna nazwa to Pura Raza Española, czyli „czysta rasa hiszpańska”.'],
+  ['trudny', 'kladruber', 'Ta czeska rasa była koniem ceremonialnym Habsburgów. Jak się nazywa?', ['Kladrubski', 'Lipicaner', 'Andaluz', 'Trakeński'], 'Stadnina w Kladrubach działa od 1579 r. i hoduje konie w dwóch maściach: siwej i karej.'],
+  ['trudny', 'piaff', 'Jaki element ujeżdżenia pokazuje ten koń?', ['Piaff', 'Pasaż', 'Piruet', 'Lewada'], 'Piaff to kłus w miejscu. Pasaż to bardzo wyniosły kłus z długą fazą zawieszenia, ale do przodu.'],
+  ['trudny', null, 'Jak nazywa się zrogowacenie na wewnętrznej stronie nóg konia, unikalne jak odcisk palca?', ['Kasztan', 'Ostroga', 'Strzałka', 'Koronka'], 'Ostroga to podobne zrogowacenie z tyłu stawu pęcinowego.'],
+  ['trudny', null, 'Ile mniej więcej kości ma szkielet dorosłego konia?', ['Około 205', 'Około 150', 'Około 260', 'Około 320'], 'Liczba może się różnić o kilka. Araby często mają mniej kręgów i żeber.'],
+  ['trudny', null, 'Która rasa często ma 17 par żeber zamiast 18?', ['Koń arabski', 'Shire', 'Fryz', 'Kuc szetlandzki'], 'Araby mają też często 5 kręgów lędźwiowych zamiast 6, dlatego mają krótki grzbiet.'],
+  ['trudny', null, 'Ile wynosi jedna „dłoń” (hand), w której Anglicy mierzą konie?', ['4 cale, czyli 10,16 cm', '5 cali, czyli 12,7 cm', '3 cale, czyli 7,62 cm', '6 cali, czyli 15,24 cm'], 'Koń o wzroście 16 hh ma więc 64 cale, czyli ok. 163 cm.'],
+  ['trudny', null, 'Do jakiej wysokości w kłębie (bez podków) koń jest kucem według FEI?', ['148 cm', '138 cm', '158 cm', '128 cm'], 'Z podkowami limit wynosi 149 cm.'],
+  ['trudny', null, 'Jaki wymiar ma duży czworobok do ujeżdżenia?', ['20 × 60 m', '20 × 40 m', '30 × 60 m', '25 × 50 m'], 'Mały czworobok ma 20 × 40 m i używa się go w niższych klasach.'],
+  ['trudny', null, 'Która litera oznacza środek czworoboku (nie stoi przy ścianie)?', ['X', 'C', 'A', 'E'], 'Wjeżdża się przy A, a sędzia główny siedzi przy C.'],
+  ['trudny', null, 'Kto pierwszy pokazał na zdjęciach, że w galopie koń na chwilę odrywa wszystkie nogi od ziemi?', ['Eadweard Muybridge', 'Bracia Lumière', 'Thomas Edison', 'Louis Daguerre'], 'Seria zdjęć „Koń w ruchu” powstała w 1878 roku i była jednym z pierwszych kroków w stronę filmu.'],
+  ['trudny', null, 'Jak nazywa się pierwsze mleko klaczy, ważne dla odporności źrebięcia?', ['Siara', 'Smółka', 'Serwatka', 'Maślanka'], 'Smółka to z kolei pierwsza kupka źrebięcia.'],
+  ['trudny', null, 'Jakim skrótem oznacza się w Polsce konia pełnej krwi angielskiej?', ['xx', 'oo', 'xo', 'x'], 'Pełna krew arabska to oo, a angloarab to xo.'],
+  ['trudny', 'thoroughbred', 'Wszystkie konie tej rasy wywodzą się od trzech ogierów: Byerley Turk, Darley Arabian i Godolphin Arabian. Jaka to rasa?', ['Pełna krew angielska', 'Koń arabski', 'Trakeński', 'Quarter Horse'], 'Konie pełnej krwi galopują ponad 60 km/h. Na wyścigach wszystkie „mają urodziny” 1 stycznia.'],
+  ['trudny', null, 'Od kiedy oficjalnie liczy się wiek koni wyścigowych na półkuli północnej?', ['Od 1 stycznia', 'Od dnia urodzin', 'Od 1 maja', 'Od pierwszego startu'], 'Dzięki temu wszystkie konie z jednego rocznika startują w tej samej grupie wiekowej.'],
+  ['trudny', 'trakehner', 'Konie tej rasy z Prus Wschodnich mają znak podwójnego poroża łosia. Jaka to rasa?', ['Trakeński', 'Wielkopolski', 'Hanowerski', 'Holsztyński'], 'W 1945 r. hodowcy uciekli z końmi na zachód. Przetrwała tylko niewielka część stada.'],
+  ['trudny', 'slaski', 'Jaka to polska rasa?', ['Koń śląski', 'Koń wielkopolski', 'Konik polski', 'Hucuł'], 'Śląski to ciężki, ale elegancki koń zaprzęgowy, najczęściej kary lub gniady.'],
+  ['trudny', 'connemara', 'Ten irlandzki kuc świetnie skacze. Jak się nazywa?', ['Connemara', 'Kuc walijski', 'Kuc szetlandzki', 'Haflinger'], 'Connemara to jeden z największych kuców i pochodzi z zachodniej Irlandii.'],
+  ['trudny', 'shire', 'Która to rasa? Należy do niej koń uważany za najwyższego w historii.', ['Shire', 'Clydesdale', 'Perszeron', 'Koń śląski'], 'Wałach Sampson urodzony w 1846 r. miał ok. 2,19 m w kłębie.'],
+  ['trudny', 'hackamore', 'Jak nazywa się to bezwędzidłowe nakiełzanie z ciężkim węzłem pod brodą?', ['Bosal (hackamore)', 'Pelham', 'Munsztuk', 'Kantar sznurkowy'], 'Bosal pochodzi z tradycji vaquero. Działa naciskiem na nos i podbródek, a nie na pysk.'],
+  ['trudny', 'pelham', 'Jak nazywa się to kiełzno z łańcuszkiem podbródkowym?', ['Pelham', 'Oliwka', 'Hackamore', 'Wędzidło pełne'], 'Pelham łączy działanie wędzidła i munsztuka, dlatego zwykle zakłada się do niego dwie pary wodzy.'],
+  ['trudny', 'dereszowata', 'Jaka to maść?', ['Dereszowata', 'Siwa jabłkowita', 'Tarantowata', 'Myszata'], 'Koń dereszowaty ma białe włosy wymieszane z kolorowymi na tułowiu, ale głowę i nogi ciemne. W odróżnieniu od siwego nie jaśnieje z wiekiem.'],
+  ['trudny', 'myszata', 'Jaka to maść?', ['Myszata', 'Siwa', 'Bułana', 'Dereszowata'], 'Myszata ma pręgę grzbietową i ciemne nogi, czasem z pręgami jak u zebry. To cechy dzikich przodków.'],
+  ['trudny', 'paint', 'Ta amerykańska rasa łączy budowę Quarter Horse z łaciatą maścią. Jak się nazywa?', ['American Paint Horse', 'Appaloosa', 'Mustang', 'Knabstrup'], 'Wzór na zdjęciu to tobiano: białe łaty przechodzą przez grzbiet, a głowa jest ciemna.'],
+  ['trudny', 'quarter', 'Ta rasa jest najszybsza na dystansie ćwierć mili. Jak się nazywa?', ['Quarter Horse', 'Pełna krew angielska', 'Mustang', 'Appaloosa'], 'Quarter Horse to najliczniejsza zarejestrowana rasa koni na świecie i gwiazda dyscyplin westernowych.'],
+  ['trudny', null, 'Jak po polsku nazywa się chód, w którym koń stawia naraz obie nogi z tej samej strony?', ['Inochód', 'Tölt', 'Pasaż', 'Cwał'], 'Inochodem potrafią iść m.in. konie islandzkie. Tölt jest czterotaktowy, a inochód dwutaktowy.'],
+  ['trudny', null, 'Ile wynosi pole widzenia konia?', ['Około 350°', 'Około 180°', 'Około 270°', 'Pełne 360°'], 'Martwe pola są tuż przed pyskiem i za zadem. Dlatego nie podchodzi się do konia od tyłu.'],
+  ['trudny', null, 'Ile zębów ma zwykle dorosły ogier?', ['40–42', '32', '24', '48'], 'Klacze mają zwykle 36–40 zębów, bo często nie mają kłów.'],
+];
+
+const BREEDS = [
+  ['konik', 'Konik polski', 'Polska', 6, ['Maść myszata z pręgą na grzbiecie.', 'Hodowany m.in. w Popielnie na Mazurach.', 'Pomaga chronić przyrodę, wypasając łąki w rezerwatach.']],
+  ['hucul', 'Hucuł', 'Karpaty', 6, ['Bardzo pewnie chodzi po górskich ścieżkach.', 'Słynna stadnina działa w Gładyszowie.', 'Ma własne zawody: ścieżkę huculską.']],
+  ['szetland', 'Kuc szetlandzki', 'Szkocja (Szetlandy)', 6, ['Do ok. 107 cm w kłębie.', 'Jak na swój wzrost jest bardzo silny.', 'Dawniej pracował w kopalniach.']],
+  ['haflinger', 'Haflinger', 'Tyrol (Austria i Włochy)', 6, ['Zawsze kasztanowaty z jasną grzywą.', 'Wszystkie wywodzą się od ogiera Folie z 1874 r.', 'Znak hodowlany ma kształt szarotki.']],
+  ['fiord', 'Koń fiordzki', 'Norwegia', 6, ['Prawie zawsze bułany z ciemną pręgą.', 'Grzywę strzyże się na sztorc.', 'Spokojny i silny, dobry dla całej rodziny.']],
+  ['arab', 'Koń arabski', 'Półwysep Arabski', 8, ['Wklęsły profil głowy i wysoko noszony ogon.', 'Często ma 17 par żeber zamiast 18.', 'W Polsce oznaczany skrótem oo.']],
+  ['fryz', 'Fryz', 'Holandia (Fryzja)', 8, ['Prawie zawsze kary.', 'Bujna grzywa i szczotki na pęcinach.', 'Ma wysoką, efektowną akcję w kłusie.']],
+  ['thoroughbred', 'Pełna krew angielska', 'Anglia', 8, ['W Polsce oznaczana skrótem xx.', 'Pochodzi od trzech ogierów założycieli.', 'Galopuje ponad 60 km/h.']],
+  ['welsh', 'Kuc walijski', 'Walia', 8, ['Dzieli się na sekcje A, B, C i D.', 'Sekcja A to najmniejsze kuce górskie.', 'Świetny kuc dla młodych jeźdźców.']],
+  ['mustang', 'Mustang', 'USA', 8, ['Pochodzi od zdziczałych koni hiszpańskich.', 'Chroniony prawem od 1971 r.', 'Żyje w stadach na zachodzie USA.']],
+  ['slaski', 'Koń śląski', 'Polska (Śląsk)', 8, ['Ciężki, ale elegancki koń zaprzęgowy.', 'Najczęściej kary lub gniady.', 'Spokojny i chętny do pracy.']],
+  ['appaloosa', 'Appaloosa', 'USA', 10, ['Cętki, prążkowane kopyta i biała twardówka oka.', 'Nazwa od rzeki Palouse.', 'Hodowali ją Indianie Nez Perce.']],
+  ['clydesdale', 'Clydesdale', 'Szkocja', 10, ['Białe odmiany i obfite szczotki na nogach.', 'Może ważyć ok. 900 kg.', 'Mimo wielkości chodzi lekko i wysoko.']],
+  ['islandzki', 'Koń islandzki', 'Islandia', 10, ['Ma pięć chodów, w tym tölt i inochód.', 'Od ponad 1000 lat nie wprowadza się na Islandię innych koni.', 'Koń, który wyjedzie, nie może wrócić.']],
+  ['lipicaner', 'Lipicaner', 'Słowenia (Lipica)', 10, ['Rodzi się ciemny i siwieje z wiekiem.', 'Gwiazda Hiszpańskiej Szkoły Jazdy w Wiedniu.', 'Wykonuje skoki szkolne, np. lewadę.']],
+  ['perszeron', 'Perszeron', 'Francja (Perche)', 10, ['Zwykle siwy lub kary.', 'Bardzo silny, a przy tym zwinny.', 'Dawniej ciągnął dyliżanse i omnibusy.']],
+  ['tinker', 'Tinker', 'Irlandia i Wielka Brytania', 10, ['Zwany też Gypsy Cob albo Irish Cob.', 'Hodowany przez Romów do ciągnięcia wozów.', 'Ma obfitą grzywę i szczotki.']],
+  ['quarter', 'Quarter Horse', 'USA', 10, ['Najszybszy na dystansie ćwierć mili.', 'Najliczniejsza zarejestrowana rasa świata.', 'Gwiazda dyscyplin westernowych.']],
+  ['paint', 'American Paint Horse', 'USA', 10, ['Łaciata maść na budowie Quarter Horse.', 'Wzory łat: tobiano, overo i tovero.', 'Popularny w jeździe westernowej.']],
+  ['andaluz', 'Andaluz (PRE)', 'Hiszpania', 12, ['Pełna nazwa: Pura Raza Española.', 'Bujna grzywa, często siwy.', 'Świetny w ujeżdżeniu klasycznym.']],
+  ['falabella', 'Falabella', 'Argentyna', 12, ['Ma ok. 70–85 cm wzrostu.', 'To koń miniaturowy o proporcjach dużego konia.', 'Nazwa pochodzi od rodziny hodowców.']],
+  ['shire', 'Shire', 'Anglia', 12, ['Jedna z najwyższych ras koni.', 'Sampson miał ok. 2,19 m w kłębie.', 'Ma obfite szczotki na nogach.']],
+  ['trakehner', 'Koń trakeński', 'Prusy Wschodnie', 12, ['Znak: podwójne poroże łosia.', 'W 1945 r. stado uciekało zimą na zachód.', 'Bardzo dobry w ujeżdżeniu i skokach.']],
+  ['connemara', 'Connemara', 'Irlandia', 12, ['Jeden z największych kuców.', 'Świetnie skacze.', 'Najczęściej siwy lub bułany.']],
+  ['knabstrup', 'Knabstrup', 'Dania', 14, ['Lamparcia, cętkowana maść.', 'Rasa założona w 1812 r. od cętkowanej klaczy.', 'Dawniej ulubieniec cyrków.']],
+  ['kladruber', 'Koń kladrubski', 'Czechy', 14, ['Stadnina w Kladrubach działa od 1579 r.', 'Hodowany w maściach siwej i karej.', 'Koń ceremonialny dworu Habsburgów.']],
+  ['achaltekin', 'Koń achał-tekiński', 'Turkmenistan', 15, ['Metaliczny połysk sierści.', 'Znajduje się w godle Turkmenistanu.', 'Bardzo wytrzymały w upale.']],
+  ['marwari', 'Marwari', 'Indie (Radżastan)', 15, ['Uszy zakręcone do środka.', 'Dawniej koń wojenny Radżputów.', 'Bardzo rzadki poza Indiami.']],
+  ['przewalski', 'Koń Przewalskiego', 'Mongolia', 15, ['Ma 66 chromosomów (koń domowy: 64).', 'Krótka, stercząca grzywa bez grzywki.', 'Wrócił do Mongolii z ogrodów zoologicznych.']],
+];
+
+// ---------- helpers ----------
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function plural(n, one, few, many) {
+  if (n === 1) return one;
+  const d = n % 10, t = n % 100;
+  return d >= 2 && d <= 4 && (t < 12 || t > 14) ? few : many;
+}
+const shoes = n => `${n} ${plural(n, 'podkowa', 'podkowy', 'podków')}`;
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const credit = key => { const c = (window.CREDITS || {})[key]; return c ? `Fot. ${esc(c.a)}${c.l ? ', ' + esc(c.l) : ''}, Wikimedia Commons` : ''; };
+const imgSrc = key => (window.CREDITS && window.CREDITS[key]) ? window.CREDITS[key].f : `img/${key}.jpg`;
+
+function load() {
+  const base = { shoes: 0, earned: 0, unlocked: [], best: {}, seen: {} };
+  try { return Object.assign(base, JSON.parse(localStorage.getItem(SAVE_KEY)) || {}); } catch { return base; }
+}
+function save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch {} }
+
+let S = load();
+let run = null;
+let screen = 'home';
+
+function rankOf(earned) {
+  let i = 0; while (i + 1 < RANKS.length && earned >= RANKS[i + 1][0]) i++;
+  const [from, name] = RANKS[i]; const next = RANKS[i + 1];
+  return { name, next, pct: next ? (earned - from) / (next[0] - from) * 100 : 100 };
+}
+
+function rosette(place, size = 56) {
+  const colors = { 1: ['#2846A6', '#5B78D6'], 2: ['#B23A2E', '#E06A5A'], 3: ['#E8E2D4', '#FFFFFF'] }[place];
+  const [c1, c2] = colors; let petals = '';
+  for (let i = 0; i < 16; i++) { const a = i / 16 * Math.PI * 2; petals += `<circle cx="${30 + Math.cos(a) * 17}" cy="${28 + Math.sin(a) * 17}" r="8" fill="${i % 2 ? c1 : c2}" stroke="rgb(0 0 0 / .15)" stroke-width=".6"/>`; }
+  return `<svg viewBox="0 0 60 78" width="${size}" height="${size * 1.3}" aria-label="Rozetka za ${place}. miejsce" role="img">
+    <path d="M18 40 L12 76 L20 70 L26 77 L30 44Z" fill="${c1}"/><path d="M42 40 L48 76 L40 70 L34 77 L30 44Z" fill="${c1}"/>
+    ${petals}<circle cx="30" cy="28" r="13" fill="#D9A43A" stroke="#9C6F14" stroke-width="1.2"/>
+    <text x="30" y="33.5" text-anchor="middle" font-family="Zilla Slab, Georgia, serif" font-weight="700" font-size="15" fill="#2A1C04">${place}</text></svg>`;
+}
+const placeFor = (correct, total) => correct === total ? 1 : correct >= total - 2 ? 2 : correct >= total - 4 ? 3 : 0;
+
+function purse() { return `<span class="purse" id="purse" aria-label="Masz ${shoes(S.shoes)}">${SHOE}<span>${S.shoes}</span></span>`; }
+function bumpPurse() { const p = $('#purse'); if (!p) return; p.querySelector('span').textContent = S.shoes; p.classList.remove('bump'); void p.offsetWidth; p.classList.add('bump'); }
+function toast(html) { const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = html; document.body.append(t); setTimeout(() => t.remove(), 1800); }
+
+// ---------- screens ----------
+function go(name) { screen = name; render(); window.scrollTo({ top: 0 }); }
+
+function render() {
+  const app = $('#app');
+  if (screen === 'home') app.innerHTML = homeView();
+  if (screen === 'quiz') app.innerHTML = quizView();
+  if (screen === 'result') app.innerHTML = resultView();
+  if (screen === 'stable') app.innerHTML = stableView();
+  if (screen === 'credits') app.innerHTML = creditsView();
+}
+
+function homeView() {
+  const r = rankOf(S.earned);
+  const lv = Object.entries(LEVELS).map(([k, L]) => {
+    const b = S.best[k]; const pl = b ? placeFor(b, 10) : 0;
+    return `<button class="level" style="--lvl:${L.color}" data-start="${k}">
+      <h2>${L.name}</h2><p class="desc">${L.desc}</p>
+      <span class="pay">${SHOE} ${L.pay === 1 ? '1 podkowa' : L.pay + ' podkowy'} za dobrą odpowiedź</span>
+      <span class="ros">${pl ? rosette(pl, 48) : `<span class="none">${b ? 'rekord ' + b + '/10' : 'bez rozetki'}</span>`}</span>
+    </button>`;
+  }).join('');
+  return `
+  <div class="topbar"><div class="brand">${SHOE}Złota Podkowa</div>${purse()}</div>
+  <section class="hero">
+    <img src="${imgSrc('achaltekin')}" alt="Złoty koń achał-tekiński">
+    <div class="hero-body"><span class="eyebrow" style="color:inherit;opacity:.8">Quiz dla koniarzy</span>
+      <h1>Pokonaj parkur 10 pytań</h1>
+      <p>Każda dobra odpowiedź to czysto pokonana przeszkoda i podkowy do sakwy.</p>
+      <span class="credit">${credit('achaltekin')}</span></div>
+  </section>
+  <section class="rank" aria-label="Twoja ranga">
+    <div class="rank-row"><span class="rank-name">${r.name}</span>
+      <span class="muted" style="font-size:14px">${r.next ? `do rangi „${r.next[1]}”: ${shoes(r.next[0] - S.earned)}` : 'najwyższa ranga!'}</span></div>
+    <div class="bar"><i style="width:${r.pct}%"></i></div>
+    <span class="muted" style="font-size:13px">Zdobyte łącznie: ${shoes(S.earned)}</span>
+  </section>
+  <div class="eyebrow">Wybierz poziom</div>
+  <section class="levels">${lv}</section>
+  <section class="tiles">
+    <button class="tile" data-go="stable"><strong>Stajnia</strong><span>${S.unlocked.length} z ${BREEDS.length} ras odblokowanych</span></button>
+    <button class="tile" data-go="credits"><strong>Zdjęcia</strong><span>Autorzy i licencje</span></button>
+  </section>`;
+}
+
+function startRun(level) {
+  const pool = QUESTIONS.map((q, i) => ({ q, i })).filter(x => x.q[0] === level);
+  const ordered = shuffle(pool).sort((a, b) => (S.seen[a.i] || 0) - (S.seen[b.i] || 0));
+  const picked = shuffle(ordered.slice(0, 10)).map(x => ({ i: x.i, opts: shuffle(x.q[3]) }));
+  run = { level, qs: picked, n: 0, results: [], streak: 0, earned: 0, answered: null, removed: [] };
+  go('quiz');
+  preload(1);
+}
+function preload(n) { const x = run && run.qs[n]; if (x && QUESTIONS[x.i][1]) { const im = new Image(); im.src = imgSrc(QUESTIONS[x.i][1]); } }
+
+function quizView() {
+  const L = LEVELS[run.level], cur = run.qs[run.n], Q = QUESTIONS[cur.i], correct = Q[3][0];
+  const fences = run.qs.map((_, k) => `<span class="fence ${k < run.results.length ? (run.results[k] ? 'clean' : 'down') : k === run.n ? 'now' : ''}"><i class="pole"></i></span>`).join('');
+  const done = run.answered !== null;
+  const answers = cur.opts.map((o, k) => {
+    let cls = '';
+    if (done) cls = o === correct ? 'right' : o === run.answered ? 'wrong' : 'gone';
+    else if (run.removed.includes(o)) cls = 'gone';
+    return `<button class="answer ${cls}" data-ans="${k}" ${done || run.removed.includes(o) ? 'disabled' : ''}><span class="key">${'ABCD'[k]}</span><span>${esc(o)}</span></button>`;
+  }).join('');
+  const canJoker = !done && cur.opts.length > 2 && !run.removed.length && S.shoes >= 3;
+  let fb = '';
+  if (done) {
+    const ok = run.answered === correct; const last = run.n === run.qs.length - 1;
+    fb = `<section class="feedback ${ok ? 'ok' : 'no'}" id="fb" aria-live="polite">
+      <h3>${ok ? 'Czysto!' : 'Zrzutka!'} ${ok ? `<span class="gain">+${run.lastGain} ${SHOE}</span>` : ''}</h3>
+      ${ok ? '' : `<p><b>Poprawna odpowiedź:</b> ${esc(correct)}</p>`}
+      <p>${esc(Q[4])}</p>
+      <button class="primary" data-next>${last ? 'Zobacz wynik' : 'Następna przeszkoda'}</button>
+    </section>`;
+  }
+  return `
+  <div class="topbar"><button class="iconbtn" data-go="home" aria-label="Wróć do menu">← Menu</button><strong style="font-family:var(--display);font-size:18px">${L.name}</strong>${purse()}</div>
+  <div class="parkour" aria-label="Postęp: przeszkoda ${run.n + 1} z 10">${fences}</div>
+  <section class="qcard">
+    <span class="eyebrow">Przeszkoda ${run.n + 1} z ${run.qs.length}</span>
+    <h2>${esc(Q[2])}</h2>
+    ${Q[1] ? `<figure><img src="${imgSrc(Q[1])}" alt="Zdjęcie do pytania"><figcaption>${credit(Q[1])}</figcaption></figure>` : ''}
+    <div class="answers">${answers}</div>
+    <div class="tools">
+      <button class="joker" data-joker ${canJoker ? '' : 'disabled'}>50/50 za 3 ${SHOE}</button>
+      <span class="streak">${run.streak >= 2 ? `Seria: ${run.streak} czysto` : 'Co 3 dobre z rzędu: +1 podkowa'}</span>
+    </div>
+  </section>
+  ${fb}`;
+}
+
+function answer(k) {
+  const cur = run.qs[run.n], Q = QUESTIONS[cur.i], pick = cur.opts[k], ok = pick === Q[3][0];
+  run.answered = pick; run.results.push(ok);
+  S.seen[cur.i] = (S.seen[cur.i] || 0) + 1;
+  if (ok) {
+    run.streak++;
+    let gain = LEVELS[run.level].pay;
+    if (run.streak % 3 === 0) { gain += 1; setTimeout(() => toast(`Seria ${run.streak}! +1 ${SHOE}`), 250); }
+    run.lastGain = gain; run.earned += gain; S.shoes += gain; S.earned += gain;
+  } else run.streak = 0;
+  save(); render(); bumpPurse();
+  const fb = $('#fb'); if (fb) fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function joker() {
+  const cur = run.qs[run.n], correct = QUESTIONS[cur.i][3][0];
+  if (S.shoes < 3 || run.removed.length) return;
+  S.shoes -= 3; save();
+  run.removed = shuffle(cur.opts.filter(o => o !== correct)).slice(0, 2);
+  render(); bumpPurse();
+}
+
+function next() {
+  if (run.n === run.qs.length - 1) {
+    const c = run.results.filter(Boolean).length;
+    S.best[run.level] = Math.max(S.best[run.level] || 0, c); save();
+    return go('result');
+  }
+  run.n++; run.answered = null; run.removed = []; render(); window.scrollTo({ top: 0 }); preload(run.n + 1);
+}
+
+function resultView() {
+  const c = run.results.filter(Boolean).length, faults = (run.qs.length - c) * 4, pl = placeFor(c, run.qs.length);
+  const title = c === 10 ? 'Czysty przejazd!' : pl ? `Rozetka za ${pl}. miejsce` : 'Trzeba jeszcze potrenować';
+  const note = c === 10 ? 'Zero punktów karnych. Prawdziwa mistrzowska runda!' : pl ? `Przejazd z ${faults} pkt karnymi.` : `Przejazd z ${faults} pkt karnymi. Do rozetki brakuje ${6 - c} ${plural(6 - c, 'dobrej odpowiedzi', 'dobrych odpowiedzi', 'dobrych odpowiedzi')}.`;
+  return `
+  <div class="topbar"><div class="brand">${SHOE}Złota Podkowa</div>${purse()}</div>
+  <section class="result">
+    <span class="eyebrow">${LEVELS[run.level].name} · wynik</span>
+    ${pl ? `<div class="big-ros">${rosette(pl, 120)}</div>` : ''}
+    <h1>${title}</h1>
+    <p class="muted" style="margin:0">${note}</p>
+    <div class="parkour" style="width:100%">${run.results.map(ok => `<span class="fence ${ok ? 'clean' : 'down'}"><i class="pole"></i></span>`).join('')}</div>
+    <div class="stats">
+      <div class="stat"><b>${c}/10</b><span>dobrze</span></div>
+      <div class="stat"><b>${faults}</b><span>pkt karnych</span></div>
+      <div class="stat"><b>+${run.earned}</b><span>${plural(run.earned, 'podkowa', 'podkowy', 'podków')}</span></div>
+    </div>
+    <div class="btnrow">
+      <button class="primary" data-start="${run.level}">Jeszcze jeden parkur</button>
+      <button class="secondary" data-go="stable">Wydaj podkowy w stajni</button>
+      <button class="secondary" data-go="home">Menu</button>
+    </div>
+  </section>`;
+}
+
+function stableView() {
+  const cards = BREEDS.map(([key, name, origin, cost]) => {
+    const own = S.unlocked.includes(key);
+    return `<button class="card ${own ? '' : 'locked'}" data-breed="${key}">
+      <span class="ph"><img src="${imgSrc(key)}" alt="${own ? esc(name) : 'Zakryty koń'}" loading="lazy"></span>
+      <span class="cap"><strong>${own ? esc(name) : '???'}</strong><span>${own ? esc(origin) : `${SHOE} ${shoes(cost)}`}</span></span>
+    </button>`;
+  }).join('');
+  return `
+  <div class="topbar"><button class="iconbtn" data-go="home">← Menu</button>${purse()}</div>
+  <header class="stable-head"><span class="eyebrow">Twoja kolekcja</span><h1>Stajnia</h1>
+    <p class="muted" style="margin:0">Za podkowy odkrywasz karty ras z ciekawostkami. Masz ${S.unlocked.length} z ${BREEDS.length}.</p></header>
+  <section class="grid">${cards}</section>`;
+}
+
+function openBreed(key) {
+  const [, name, origin, cost, facts] = BREEDS.find(b => b[0] === key);
+  const own = S.unlocked.includes(key);
+  let body;
+  if (own) body = `<img src="${imgSrc(key)}" alt="${esc(name)}"><span class="eyebrow">${esc(origin)}</span><h2>${esc(name)}</h2>
+      <ul>${facts.map(f => `<li>${esc(f)}</li>`).join('')}</ul><small class="muted">${credit(key)}</small>
+      <button class="secondary" data-close>Zamknij</button>`;
+  else if (S.shoes >= cost) body = `<h2>Odkryć tę rasę?</h2><p style="margin:0">Karta kosztuje ${shoes(cost)}. Po zakupie zostanie Ci ${shoes(S.shoes - cost)}.</p>
+      <button class="primary" data-buy="${key}">Odkryj za ${cost} ${SHOE}</button><button class="secondary" data-close>Jeszcze nie</button>`;
+  else body = `<h2>Za mało podków</h2><p style="margin:0">Ta karta kosztuje ${shoes(cost)}, a masz ${shoes(S.shoes)}. Brakuje ${shoes(cost - S.shoes)}. Zagraj parkur, żeby je zdobyć.</p>
+      <button class="primary" data-go="home">Do parkuru</button><button class="secondary" data-close>Zamknij</button>`;
+  closeSheet();
+  const w = document.createElement('div'); w.className = 'sheet-wrap'; w.id = 'sheet';
+  w.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">${body}</div>`;
+  document.body.append(w);
+  w.querySelector('button')?.focus();
+}
+function closeSheet() { $('#sheet')?.remove(); }
+function buy(key) {
+  const b = BREEDS.find(x => x[0] === key);
+  if (S.shoes < b[3] || S.unlocked.includes(key)) return;
+  S.shoes -= b[3]; S.unlocked.push(key); save();
+  render(); openBreed(key); toast(`Nowy koń w stajni: ${esc(b[1])}`);
+}
+
+function creditsView() {
+  const items = Object.entries(window.CREDITS || {}).map(([k, c]) =>
+    `<li><a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(c.n)}" target="_blank" rel="noopener">${esc(c.n.replace(/_/g, ' '))}</a>, ${esc(c.a)}${c.l ? ', ' + esc(c.l) : ''}</li>`).join('');
+  return `
+  <div class="topbar"><button class="iconbtn" data-go="home">← Menu</button>${purse()}</div>
+  <section class="credits"><span class="eyebrow">Zdjęcia</span><h1 style="font-size:28px">Autorzy zdjęć</h1>
+    <p class="muted" style="margin:0">Wszystkie zdjęcia pochodzą z Wikimedia Commons i są udostępnione na wolnych licencjach. Kliknij nazwę, żeby zobaczyć oryginał.</p>
+    <ol>${items}</ol>
+    <button class="secondary" data-reset-ask>Zacznij od nowa (wyzeruj podkowy)</button>
+    <div id="reset-box"></div>
+  </section>`;
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button, .sheet-wrap'); if (!t) return;
+  if (t.classList.contains('sheet-wrap')) { if (e.target === t) closeSheet(); return; }
+  const d = t.dataset;
+  if (d.start) { closeSheet(); return startRun(d.start); }
+  if (d.go) { closeSheet(); return go(d.go); }
+  if (d.ans !== undefined) return answer(+d.ans);
+  if ('next' in d) return next();
+  if ('joker' in d) return joker();
+  if (d.breed) return openBreed(d.breed);
+  if (d.buy) return buy(d.buy);
+  if ('close' in d) return closeSheet();
+  if ('resetAsk' in d) { $('#reset-box').innerHTML = `<p style="margin:0 0 8px">Na pewno? Znikną podkowy, rozetki i odkryte konie.</p><button class="primary" style="background:var(--bad)" data-reset>Tak, wyzeruj</button>`; return; }
+  if ('reset' in d) { S = { shoes: 0, earned: 0, unlocked: [], best: {}, seen: {} }; save(); return go('home'); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeSheet();
+  if (screen === 'quiz' && run && run.answered === null && /^[1-4a-d]$/i.test(e.key)) {
+    const k = isNaN(e.key) ? 'abcd'.indexOf(e.key.toLowerCase()) : +e.key - 1;
+    const b = document.querySelector(`[data-ans="${k}"]`); if (b && !b.disabled) answer(k);
+  }
+});
+
+function start(data) {
+  if (data && data.run) { run = data.run; screen = data.screen || 'home'; }
+  render();
+}
+window.claude?.hot?.snapshot?.(() => ({ run, screen }));
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+</script>
+
+</body>
+</html>
